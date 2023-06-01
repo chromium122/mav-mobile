@@ -1,16 +1,16 @@
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: invalid_annotation_target
+
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'token_data.freezed.dart';
 part 'token_data.g.dart';
 
-@JsonSerializable()
-class TokenData {
-  @JsonKey(name: "ErvenyessegVege")
-  int expiration;
-  @JsonKey(name: "Token")
-  String token;
-
-  TokenData({required this.expiration, required this.token});
+@freezed
+class TokenData with _$TokenData {
+  factory TokenData({
+    @JsonKey(name: "ErvenyessegVege") required int expiration,
+    @JsonKey(name: "Token") required String token,
+  }) = _TokenData;
 
   factory TokenData.fromJson(Map<String, dynamic> json) =>
       _$TokenDataFromJson(json);
-  Map<String, dynamic> toJson() => _$TokenDataToJson(this);
 }

@@ -6,7 +6,7 @@ part of 'train.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Train _$TrainFromJson(Map<String, dynamic> json) => Train(
+_$_Train _$$_TrainFromJson(Map<String, dynamic> json) => _$_Train(
       date: json['Datum'] as int,
       color: json['Szin'] as String,
       type: json['Tipus'] as String,
@@ -17,31 +17,32 @@ Train _$TrainFromJson(Map<String, dynamic> json) => Train(
       trainNumber: json['Vonatszam'] as String,
     );
 
-Map<String, dynamic> _$TrainToJson(Train instance) => <String, dynamic>{
+Map<String, dynamic> _$$_TrainToJson(_$_Train instance) => <String, dynamic>{
       'Datum': instance.date,
       'Szin': instance.color,
       'Tipus': instance.type,
-      'Viszonylat': instance.route.toJson(),
-      'ViszonylatJeloles': instance.routeMarking.toJson(),
+      'Viszonylat': instance.route,
+      'ViszonylatJeloles': instance.routeMarking,
       'VonatID': instance.trainId,
       'Vonatszam': instance.trainNumber,
     };
 
-Route _$RouteFromJson(Map<String, dynamic> json) => Route(
+_$_Route _$$_RouteFromJson(Map<String, dynamic> json) => _$_Route(
       departStation: json['InduloAllomasKod'] as String,
       departTime: json['IndulasIdeje'] as int,
       arriveStation: json['CelAllomasKod'] as String,
       arriveTime: json['ErkezesIdeje'] as int,
     );
 
-Map<String, dynamic> _$RouteToJson(Route instance) => <String, dynamic>{
+Map<String, dynamic> _$$_RouteToJson(_$_Route instance) => <String, dynamic>{
       'InduloAllomasKod': instance.departStation,
       'IndulasIdeje': instance.departTime,
       'CelAllomasKod': instance.arriveStation,
       'ErkezesIdeje': instance.arriveTime,
     };
 
-RouteMarking _$RouteMarkingFromJson(Map<String, dynamic> json) => RouteMarking(
+_$_RouteMarking _$$_RouteMarkingFromJson(Map<String, dynamic> json) =>
+    _$_RouteMarking(
       fontColor: json['FontSzin'] as String?,
       backgroundColor: json['HatterSzin'] as String?,
       id: json['Id'] as String?,
@@ -51,7 +52,7 @@ RouteMarking _$RouteMarkingFromJson(Map<String, dynamic> json) => RouteMarking(
           : Logo.fromJson(json['Logo'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$RouteMarkingToJson(RouteMarking instance) =>
+Map<String, dynamic> _$$_RouteMarkingToJson(_$_RouteMarking instance) =>
     <String, dynamic>{
       'FontSzin': instance.fontColor,
       'HatterSzin': instance.backgroundColor,
@@ -60,10 +61,10 @@ Map<String, dynamic> _$RouteMarkingToJson(RouteMarking instance) =>
       'Logo': instance.logo,
     };
 
-Logo _$LogoFromJson(Map<String, dynamic> json) => Logo(
+_$_Logo _$$_LogoFromJson(Map<String, dynamic> json) => _$_Logo(
       fontCode: json['FontKod'] as int?,
     );
 
-Map<String, dynamic> _$LogoToJson(Logo instance) => <String, dynamic>{
+Map<String, dynamic> _$$_LogoToJson(_$_Logo instance) => <String, dynamic>{
       'FontKod': instance.fontCode,
     };

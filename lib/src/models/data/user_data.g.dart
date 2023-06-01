@@ -6,16 +6,17 @@ part of 'user_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
-      email: json['EmailCim'] as String,
+_$_UserData _$$_UserDataFromJson(Map<String, dynamic> json) => _$_UserData(
+      email: json['VezetekNev'] as String,
       firstName: json['KeresztNev'] as String,
-      lastName: json['VezetekNev'] as String,
+      lastName: json['EmailCim'] as String,
       registrationId: json['RegAzonosito'] as String,
     );
 
-Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
-      'EmailCim': instance.email,
+Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
+    <String, dynamic>{
+      'VezetekNev': instance.email,
       'KeresztNev': instance.firstName,
-      'VezetekNev': instance.lastName,
+      'EmailCim': instance.lastName,
       'RegAzonosito': instance.registrationId,
     };
