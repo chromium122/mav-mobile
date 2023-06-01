@@ -35,8 +35,6 @@ class MavClient {
       return TokenData.fromJson(resp.data);
     } on MavError {
       rethrow;
-    } catch (e) {
-      throw MavError(message: "Unknown error");
     }
   }
 
@@ -59,8 +57,6 @@ class MavClient {
       return UserData.fromJson(resp.data['FelhasznaloAdat']);
     } on MavError {
       rethrow;
-    } catch (e) {
-      throw MavError(message: "Unknown error");
     }
   }
 }
