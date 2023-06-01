@@ -1,8 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:mav_mobile/src/error.dart';
-import 'package:mav_mobile/src/models/token_data.dart';
-import 'package:mav_mobile/src/models/user_data.dart';
-import 'package:mav_mobile/src/uaid.dart';
+import 'endpoints.dart';
+import './models/data/token_data.dart';
+import './models/data/user_data.dart';
+
+import './models/train/train.dart';
+
+import './uaid.dart';
+import './error.dart';
 
 class MavClient {
   final _dio = Dio(BaseOptions(
@@ -10,7 +14,6 @@ class MavClient {
       "User-Agent":
           "Dalvik/2.1.0 (Linux; U; Android 13; AC2003 Build/TQ2A.230505.002)",
     },
-    baseUrl: "https://vim.mav-start.hu/VIM/PR/20230501/MobileServiceS.svc/rest",
   ));
   final uaid = generateUAID();
 
@@ -21,7 +24,7 @@ class MavClient {
     required String password,
   }) async {
     try {
-      var resp = await _dio.post("/Bejelentkezes", data: {
+      var resp = await _dio.post(Endpoints.LOGIN, data: {
         'FelhasznaloAzonosito': email,
         'Jelszo': password,
         'Nyelv': 'HU',
@@ -43,7 +46,7 @@ class MavClient {
     required String token,
   }) async {
     try {
-      var resp = await _dio.post("/GetFelhasznaloAdat", data: {
+      var resp = await _dio.post(Endpoints.GET_USER_DATA, data: {
         'FelhasznaloAzonosito': email,
         'Token': token,
         'Nyelv': 'HU',
@@ -57,6 +60,28 @@ class MavClient {
       return UserData.fromJson(resp.data['FelhasznaloAdat']);
     } on MavError {
       rethrow;
+    }
+  }
+
+  Future<List<Train>> fetchAllTrains() async {
+    try {
+      var resp = await _dio.post(Endpoints.GET_TRAIN_LIST, data: {
+        'Nyelv': 'HU',
+        'UAID': uaid,
+      });
+
+      print(resp.data["Vonatok"][0]);
+      List<Train> trainList = [];
+      resp.data["Vonatok"].forEach((t) {
+        trainList.add(Train.fromJson(t));
+      });
+
+      return trainList;
+    } on MavError {
+      rethrow;
+    } on DioError catch (error) {
+      print(error.response);
+      throw Error();
     }
   }
 }

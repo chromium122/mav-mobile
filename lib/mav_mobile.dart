@@ -2,7 +2,10 @@ library mav_mobile;
 
 export 'src/client.dart';
 
-export 'src/models/token_data.dart';
-export 'src/models/user_data.dart';
+export 'src/models/data/token_data.dart';
+export 'src/models/data/user_data.dart';
+
+export 'src/models/train/train.dart';
 
 export 'src/error.dart';
+export 'src/uaid.dart';
