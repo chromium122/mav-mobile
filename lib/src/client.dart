@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:mav_mobile/src/error.dart';
 import 'package:mav_mobile/src/models/token_data.dart';
+import 'package:mav_mobile/src/models/user_data.dart';
 import 'package:mav_mobile/src/uaid.dart';
 
 class MavClient {
@@ -15,8 +16,10 @@ class MavClient {
 
   MavClient();
 
-  Future<TokenData> login(
-      {required String email, required String password}) async {
+  Future<TokenData> login({
+    required String email,
+    required String password,
+  }) async {
     try {
       var resp = await _dio.post("/Bejelentkezes", data: {
         'FelhasznaloAzonosito': email,
@@ -26,16 +29,37 @@ class MavClient {
       });
 
       if (resp.data["Uzenetek"] != null) {
-        throw MavError(
-            message: resp.data["Uzenetek"][0]["Szoveg"],
-            id: resp.data["Uzenetek"][0]["ID"]);
+        throw MavError.fromMavMessage(resp.data["Uzenetek"][0]);
       }
 
       return TokenData.fromJson(resp.data);
     } on MavError {
       rethrow;
     } catch (e) {
-      print(e);
+      throw MavError(message: "Unknown error");
+    }
+  }
+
+  Future<UserData> fetchUserData({
+    required String email,
+    required String token,
+  }) async {
+    try {
+      var resp = await _dio.post("/GetFelhasznaloAdat", data: {
+        'FelhasznaloAzonosito': email,
+        'Token': token,
+        'Nyelv': 'HU',
+        'UAID': uaid,
+      });
+
+      if (resp.data["Uzenetek"] != null) {
+        throw MavError.fromMavMessage(resp.data["Uzenetek"][0]);
+      }
+
+      return UserData.fromJson(resp.data['FelhasznaloAdat']);
+    } on MavError {
+      rethrow;
+    } catch (e) {
       throw MavError(message: "Unknown error");
     }
   }
