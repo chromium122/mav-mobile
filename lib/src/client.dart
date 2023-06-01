@@ -70,7 +70,6 @@ class MavClient {
         'UAID': uaid,
       });
 
-      print(resp.data["Vonatok"][0]);
       List<Train> trainList = [];
       resp.data["Vonatok"].forEach((t) {
         trainList.add(Train.fromJson(t));
@@ -79,9 +78,6 @@ class MavClient {
       return trainList;
     } on MavError {
       rethrow;
-    } on DioError catch (error) {
-      print(error.response);
-      throw Error();
     }
   }
 }
