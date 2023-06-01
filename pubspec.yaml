@@ -8,7 +8,10 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
+  build_runner: ^2.4.4
   dio: ^5.1.2
+  json_annotation: ^4.8.1
+  json_serializable: ^6.7.0
   uuid: ^3.0.7
   # path: ^1.8.0
 

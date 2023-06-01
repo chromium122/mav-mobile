@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:uuid/uuid.dart';
-import 'dart:io';
 import 'dart:typed_data';
 
 String generateUAID() {
