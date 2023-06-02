@@ -4,6 +4,7 @@ import './models/data/token_data.dart';
 import './models/data/user_data.dart';
 
 import './models/train/train.dart';
+import './models/train/train_info.dart';
 
 import './uaid.dart';
 import './error.dart';
@@ -70,12 +71,34 @@ class MavClient {
         'UAID': uaid,
       });
 
+      if (resp.data["Uzenetek"] != null) {
+        throw MavError.fromMavMessage(resp.data["Uzenetek"][0]);
+      }
+
       List<Train> trainList = [];
       resp.data["Vonatok"].forEach((t) {
         trainList.add(Train.fromJson(t));
       });
 
       return trainList;
+    } on MavError {
+      rethrow;
+    }
+  }
+
+  Future<TrainInfo> fetchTrainInfo(String trainId) async {
+    try {
+      var resp = await _dio.post(Endpoints.GET_TRAIN_INFO, data: {
+        'Nyelv': 'HU',
+        'UAID': uaid,
+        'VonatID': trainId,
+      });
+
+      if (resp.data["Uzenetek"] != null) {
+        throw MavError.fromMavMessage(resp.data["Uzenetek"][0]);
+      }
+
+      return TrainInfo.fromJson(resp.data);
     } on MavError {
       rethrow;
     }

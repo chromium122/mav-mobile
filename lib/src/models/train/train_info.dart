@@ -24,8 +24,10 @@ class ScheduleEntry with _$ScheduleEntry {
     @JsonKey(name: "AllomasID") required String stationId,
     @JsonKey(name: "AllomasNev") required String stationName,
     @JsonKey(name: "Ido") required ScheduleTime time,
-    @JsonKey(name: "IndVagany") required String platform,
-    @JsonKey(name: "IndVaganyTipus") required String platformType,
+    @JsonKey(name: "IndVagany") required String? departPlatform,
+    @JsonKey(name: "IndVaganyTipus") required String? departPlatformType,
+    @JsonKey(name: "ErkVagany") required String? arrivePlatform,
+    @JsonKey(name: "ErkVaganyTipus") required String? arrivePlatformType,
   }) = _ScheduleEntry;
 
   factory ScheduleEntry.fromJson(Map<String, dynamic> json) =>

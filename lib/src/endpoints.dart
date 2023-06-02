@@ -9,4 +9,5 @@ class Endpoints {
   static final String GET_USER_DATA = "$BASE_URL_USER/GetFelhasznaloAdat";
 
   static final String GET_TRAIN_LIST = "$BASE_URL_DATA/GetVonatLista";
+  static final String GET_TRAIN_INFO = "$BASE_URL_DATA/GetVonatInfo";
 }

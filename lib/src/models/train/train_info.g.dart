@@ -26,8 +26,10 @@ _$_ScheduleEntry _$$_ScheduleEntryFromJson(Map<String, dynamic> json) =>
       stationId: json['AllomasID'] as String,
       stationName: json['AllomasNev'] as String,
       time: ScheduleTime.fromJson(json['Ido'] as Map<String, dynamic>),
-      platform: json['IndVagany'] as String,
-      platformType: json['IndVaganyTipus'] as String,
+      departPlatform: json['IndVagany'] as String?,
+      departPlatformType: json['IndVaganyTipus'] as String?,
+      arrivePlatform: json['ErkVagany'] as String?,
+      arrivePlatformType: json['ErkVaganyTipus'] as String?,
     );
 
 Map<String, dynamic> _$$_ScheduleEntryToJson(_$_ScheduleEntry instance) =>
@@ -35,8 +37,10 @@ Map<String, dynamic> _$$_ScheduleEntryToJson(_$_ScheduleEntry instance) =>
       'AllomasID': instance.stationId,
       'AllomasNev': instance.stationName,
       'Ido': instance.time,
-      'IndVagany': instance.platform,
-      'IndVaganyTipus': instance.platformType,
+      'IndVagany': instance.departPlatform,
+      'IndVaganyTipus': instance.departPlatformType,
+      'ErkVagany': instance.arrivePlatform,
+      'ErkVaganyTipus': instance.arrivePlatformType,
     };
 
 _$_ScheduleTime _$$_ScheduleTimeFromJson(Map<String, dynamic> json) =>

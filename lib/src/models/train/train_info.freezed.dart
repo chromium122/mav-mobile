@@ -239,9 +239,13 @@ mixin _$ScheduleEntry {
   @JsonKey(name: "Ido")
   ScheduleTime get time => throw _privateConstructorUsedError;
   @JsonKey(name: "IndVagany")
-  String get platform => throw _privateConstructorUsedError;
+  String? get departPlatform => throw _privateConstructorUsedError;
   @JsonKey(name: "IndVaganyTipus")
-  String get platformType => throw _privateConstructorUsedError;
+  String? get departPlatformType => throw _privateConstructorUsedError;
+  @JsonKey(name: "ErkVagany")
+  String? get arrivePlatform => throw _privateConstructorUsedError;
+  @JsonKey(name: "ErkVaganyTipus")
+  String? get arrivePlatformType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -259,8 +263,10 @@ abstract class $ScheduleEntryCopyWith<$Res> {
       {@JsonKey(name: "AllomasID") String stationId,
       @JsonKey(name: "AllomasNev") String stationName,
       @JsonKey(name: "Ido") ScheduleTime time,
-      @JsonKey(name: "IndVagany") String platform,
-      @JsonKey(name: "IndVaganyTipus") String platformType});
+      @JsonKey(name: "IndVagany") String? departPlatform,
+      @JsonKey(name: "IndVaganyTipus") String? departPlatformType,
+      @JsonKey(name: "ErkVagany") String? arrivePlatform,
+      @JsonKey(name: "ErkVaganyTipus") String? arrivePlatformType});
 
   $ScheduleTimeCopyWith<$Res> get time;
 }
@@ -281,8 +287,10 @@ class _$ScheduleEntryCopyWithImpl<$Res, $Val extends ScheduleEntry>
     Object? stationId = null,
     Object? stationName = null,
     Object? time = null,
-    Object? platform = null,
-    Object? platformType = null,
+    Object? departPlatform = freezed,
+    Object? departPlatformType = freezed,
+    Object? arrivePlatform = freezed,
+    Object? arrivePlatformType = freezed,
   }) {
     return _then(_value.copyWith(
       stationId: null == stationId
@@ -297,14 +305,22 @@ class _$ScheduleEntryCopyWithImpl<$Res, $Val extends ScheduleEntry>
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as ScheduleTime,
-      platform: null == platform
-          ? _value.platform
-          : platform // ignore: cast_nullable_to_non_nullable
-              as String,
-      platformType: null == platformType
-          ? _value.platformType
-          : platformType // ignore: cast_nullable_to_non_nullable
-              as String,
+      departPlatform: freezed == departPlatform
+          ? _value.departPlatform
+          : departPlatform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departPlatformType: freezed == departPlatformType
+          ? _value.departPlatformType
+          : departPlatformType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      arrivePlatform: freezed == arrivePlatform
+          ? _value.arrivePlatform
+          : arrivePlatform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      arrivePlatformType: freezed == arrivePlatformType
+          ? _value.arrivePlatformType
+          : arrivePlatformType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -329,8 +345,10 @@ abstract class _$$_ScheduleEntryCopyWith<$Res>
       {@JsonKey(name: "AllomasID") String stationId,
       @JsonKey(name: "AllomasNev") String stationName,
       @JsonKey(name: "Ido") ScheduleTime time,
-      @JsonKey(name: "IndVagany") String platform,
-      @JsonKey(name: "IndVaganyTipus") String platformType});
+      @JsonKey(name: "IndVagany") String? departPlatform,
+      @JsonKey(name: "IndVaganyTipus") String? departPlatformType,
+      @JsonKey(name: "ErkVagany") String? arrivePlatform,
+      @JsonKey(name: "ErkVaganyTipus") String? arrivePlatformType});
 
   @override
   $ScheduleTimeCopyWith<$Res> get time;
@@ -350,8 +368,10 @@ class __$$_ScheduleEntryCopyWithImpl<$Res>
     Object? stationId = null,
     Object? stationName = null,
     Object? time = null,
-    Object? platform = null,
-    Object? platformType = null,
+    Object? departPlatform = freezed,
+    Object? departPlatformType = freezed,
+    Object? arrivePlatform = freezed,
+    Object? arrivePlatformType = freezed,
   }) {
     return _then(_$_ScheduleEntry(
       stationId: null == stationId
@@ -366,14 +386,22 @@ class __$$_ScheduleEntryCopyWithImpl<$Res>
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as ScheduleTime,
-      platform: null == platform
-          ? _value.platform
-          : platform // ignore: cast_nullable_to_non_nullable
-              as String,
-      platformType: null == platformType
-          ? _value.platformType
-          : platformType // ignore: cast_nullable_to_non_nullable
-              as String,
+      departPlatform: freezed == departPlatform
+          ? _value.departPlatform
+          : departPlatform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      departPlatformType: freezed == departPlatformType
+          ? _value.departPlatformType
+          : departPlatformType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      arrivePlatform: freezed == arrivePlatform
+          ? _value.arrivePlatform
+          : arrivePlatform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      arrivePlatformType: freezed == arrivePlatformType
+          ? _value.arrivePlatformType
+          : arrivePlatformType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -385,8 +413,10 @@ class _$_ScheduleEntry implements _ScheduleEntry {
       {@JsonKey(name: "AllomasID") required this.stationId,
       @JsonKey(name: "AllomasNev") required this.stationName,
       @JsonKey(name: "Ido") required this.time,
-      @JsonKey(name: "IndVagany") required this.platform,
-      @JsonKey(name: "IndVaganyTipus") required this.platformType});
+      @JsonKey(name: "IndVagany") required this.departPlatform,
+      @JsonKey(name: "IndVaganyTipus") required this.departPlatformType,
+      @JsonKey(name: "ErkVagany") required this.arrivePlatform,
+      @JsonKey(name: "ErkVaganyTipus") required this.arrivePlatformType});
 
   factory _$_ScheduleEntry.fromJson(Map<String, dynamic> json) =>
       _$$_ScheduleEntryFromJson(json);
@@ -402,14 +432,20 @@ class _$_ScheduleEntry implements _ScheduleEntry {
   final ScheduleTime time;
   @override
   @JsonKey(name: "IndVagany")
-  final String platform;
+  final String? departPlatform;
   @override
   @JsonKey(name: "IndVaganyTipus")
-  final String platformType;
+  final String? departPlatformType;
+  @override
+  @JsonKey(name: "ErkVagany")
+  final String? arrivePlatform;
+  @override
+  @JsonKey(name: "ErkVaganyTipus")
+  final String? arrivePlatformType;
 
   @override
   String toString() {
-    return 'ScheduleEntry(stationId: $stationId, stationName: $stationName, time: $time, platform: $platform, platformType: $platformType)';
+    return 'ScheduleEntry(stationId: $stationId, stationName: $stationName, time: $time, departPlatform: $departPlatform, departPlatformType: $departPlatformType, arrivePlatform: $arrivePlatform, arrivePlatformType: $arrivePlatformType)';
   }
 
   @override
@@ -422,16 +458,20 @@ class _$_ScheduleEntry implements _ScheduleEntry {
             (identical(other.stationName, stationName) ||
                 other.stationName == stationName) &&
             (identical(other.time, time) || other.time == time) &&
-            (identical(other.platform, platform) ||
-                other.platform == platform) &&
-            (identical(other.platformType, platformType) ||
-                other.platformType == platformType));
+            (identical(other.departPlatform, departPlatform) ||
+                other.departPlatform == departPlatform) &&
+            (identical(other.departPlatformType, departPlatformType) ||
+                other.departPlatformType == departPlatformType) &&
+            (identical(other.arrivePlatform, arrivePlatform) ||
+                other.arrivePlatform == arrivePlatform) &&
+            (identical(other.arrivePlatformType, arrivePlatformType) ||
+                other.arrivePlatformType == arrivePlatformType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, stationId, stationName, time, platform, platformType);
+  int get hashCode => Object.hash(runtimeType, stationId, stationName, time,
+      departPlatform, departPlatformType, arrivePlatform, arrivePlatformType);
 
   @JsonKey(ignore: true)
   @override
@@ -456,9 +496,13 @@ abstract class _ScheduleEntry implements ScheduleEntry {
       @JsonKey(name: "Ido")
           required final ScheduleTime time,
       @JsonKey(name: "IndVagany")
-          required final String platform,
+          required final String? departPlatform,
       @JsonKey(name: "IndVaganyTipus")
-          required final String platformType}) = _$_ScheduleEntry;
+          required final String? departPlatformType,
+      @JsonKey(name: "ErkVagany")
+          required final String? arrivePlatform,
+      @JsonKey(name: "ErkVaganyTipus")
+          required final String? arrivePlatformType}) = _$_ScheduleEntry;
 
   factory _ScheduleEntry.fromJson(Map<String, dynamic> json) =
       _$_ScheduleEntry.fromJson;
@@ -474,10 +518,16 @@ abstract class _ScheduleEntry implements ScheduleEntry {
   ScheduleTime get time;
   @override
   @JsonKey(name: "IndVagany")
-  String get platform;
+  String? get departPlatform;
   @override
   @JsonKey(name: "IndVaganyTipus")
-  String get platformType;
+  String? get departPlatformType;
+  @override
+  @JsonKey(name: "ErkVagany")
+  String? get arrivePlatform;
+  @override
+  @JsonKey(name: "ErkVaganyTipus")
+  String? get arrivePlatformType;
   @override
   @JsonKey(ignore: true)
   _$$_ScheduleEntryCopyWith<_$_ScheduleEntry> get copyWith =>
